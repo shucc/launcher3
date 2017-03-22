@@ -48,24 +48,14 @@ public class LeftFragment extends Fragment {
         int statusHeight = ScreenUtil.getStatusHeight(activity);
         int navigationHeight = ScreenUtil.getBottomStatusHeight(activity);
 
-        if (statusHeight == 0) {
-            viewStatusBar.setVisibility(View.GONE);
-        } else {
-            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) viewStatusBar.getLayoutParams();
-            params.height = statusHeight;
-            params.width = RelativeLayout.LayoutParams.MATCH_PARENT;
-            viewStatusBar.setLayoutParams(params);
-            viewStatusBar.setVisibility(View.VISIBLE);
-        }
+        RelativeLayout.LayoutParams statusParams = (RelativeLayout.LayoutParams) viewStatusBar.getLayoutParams();
+        statusParams.height = statusHeight;
+        statusParams.width = RelativeLayout.LayoutParams.MATCH_PARENT;
+        viewStatusBar.setLayoutParams(statusParams);
 
-        if (navigationHeight == 0) {
-            viewNavigationBar.setVisibility(View.GONE);
-        } else {
-            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) viewNavigationBar.getLayoutParams();
-            params.height = navigationHeight;
-            params.width = RelativeLayout.LayoutParams.MATCH_PARENT;
-            viewNavigationBar.setLayoutParams(params);
-            viewNavigationBar.setVisibility(View.VISIBLE);
-        }
+        RelativeLayout.LayoutParams navigationParams = (RelativeLayout.LayoutParams) viewNavigationBar.getLayoutParams();
+        navigationParams.height = navigationHeight;
+        navigationParams.width = RelativeLayout.LayoutParams.MATCH_PARENT;
+        viewNavigationBar.setLayoutParams(navigationParams);
     }
 }

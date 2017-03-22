@@ -8,8 +8,8 @@
     <View
         android:id="@+id/view_statusBar"
         android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:background="@drawable/bg_statusbar"/>
+        android:layout_height="0dp"
+        android:background="@color/all_apps_navbar_color"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -22,8 +22,8 @@
     <View
         android:id="@+id/view_navigationBar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="0dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/bg_navigationbar"/>
+        android:background="@color/all_apps_navbar_color"/>
 
 </RelativeLayout>
