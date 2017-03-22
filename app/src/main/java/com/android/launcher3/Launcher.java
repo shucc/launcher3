@@ -3992,6 +3992,9 @@ public class Launcher extends Activity
      * Implementation of the method from LauncherModel.Callbacks.
      */
     public void finishBindingItems() {
+
+        addLeftSideView();
+
         Runnable r = new Runnable() {
             public void run() {
                 finishBindingItems();
@@ -4011,6 +4014,30 @@ public class Launcher extends Activity
             mSavedState = null;
         }
 
+        mWorkspace.restoreInstanceStateForRemainingPages();
+
+        setWorkspaceLoading(false);
+
+        if (mPendingActivityResult != null) {
+            handleActivityResult(mPendingActivityResult.requestCode,
+                    mPendingActivityResult.resultCode, mPendingActivityResult.data);
+            mPendingActivityResult = null;
+        }
+
+        InstallShortcutReceiver.disableAndFlushInstallQueue(this);
+
+        if (mLauncherCallbacks != null) {
+            mLauncherCallbacks.finishBindingItems(false);
+        }
+        if (LauncherAppState.PROFILE_STARTUP) {
+            Trace.endSection();
+        }
+    }
+
+    /**
+     * 添加左侧侧边栏
+     */
+    private void addLeftSideView() {
         //添加左侧滑出栏
         View leftView = getLayoutInflater().inflate(R.layout.left_side, null);
         mWorkspace.addToCustomContentPage(leftView, new CustomContentCallbacks() {
@@ -4034,25 +4061,6 @@ public class Launcher extends Activity
                 return true;
             }
         }, "LeftSide");
-
-        mWorkspace.restoreInstanceStateForRemainingPages();
-
-        setWorkspaceLoading(false);
-
-        if (mPendingActivityResult != null) {
-            handleActivityResult(mPendingActivityResult.requestCode,
-                    mPendingActivityResult.resultCode, mPendingActivityResult.data);
-            mPendingActivityResult = null;
-        }
-
-        InstallShortcutReceiver.disableAndFlushInstallQueue(this);
-
-        if (mLauncherCallbacks != null) {
-            mLauncherCallbacks.finishBindingItems(false);
-        }
-        if (LauncherAppState.PROFILE_STARTUP) {
-            Trace.endSection();
-        }
     }
 
     private boolean canRunNewAppsAnimation() {

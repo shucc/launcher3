@@ -4092,22 +4092,24 @@ public class Workspace extends PagedView
             final int itemCount = container.getChildCount();
             for (int itemIdx = 0; itemIdx < itemCount; itemIdx++) {
                 View item = container.getChildAt(itemIdx);
-                ItemInfo info = (ItemInfo) item.getTag();
-                if (recurse && info instanceof FolderInfo && item instanceof FolderIcon) {
-                    FolderIcon folder = (FolderIcon) item;
-                    ArrayList<View> folderChildren = folder.getFolder().getItemsInReadingOrder();
-                    // map over all the children in the folder
-                    final int childCount = folderChildren.size();
-                    for (int childIdx = 0; childIdx < childCount; childIdx++) {
-                        View child = folderChildren.get(childIdx);
-                        info = (ItemInfo) child.getTag();
-                        if (op.evaluate(info, child)) {
+                if (item.getTag() instanceof ItemInfo) {
+                    ItemInfo info = (ItemInfo) item.getTag();
+                    if (recurse && info instanceof FolderInfo && item instanceof FolderIcon) {
+                        FolderIcon folder = (FolderIcon) item;
+                        ArrayList<View> folderChildren = folder.getFolder().getItemsInReadingOrder();
+                        // map over all the children in the folder
+                        final int childCount = folderChildren.size();
+                        for (int childIdx = 0; childIdx < childCount; childIdx++) {
+                            View child = folderChildren.get(childIdx);
+                            info = (ItemInfo) child.getTag();
+                            if (op.evaluate(info, child)) {
+                                return;
+                            }
+                        }
+                    } else {
+                        if (op.evaluate(info, item)) {
                             return;
                         }
-                    }
-                } else {
-                    if (op.evaluate(info, item)) {
-                        return;
                     }
                 }
             }
