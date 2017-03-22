@@ -646,12 +646,12 @@ public class Workspace extends PagedView
             CellLayout firstPage = (CellLayout) getChildAt(0);
             int cellHeight = firstPage.getCellHeight();
 
-            View qsbContainer = mLauncher.getQsbContainer();
-            ViewGroup.LayoutParams lp = qsbContainer.getLayoutParams();
-            if (cellHeight > 0 && lp.height != cellHeight) {
-                lp.height = cellHeight;
-                qsbContainer.setLayoutParams(lp);
-            }
+//            View qsbContainer = mLauncher.getQsbContainer();
+//            ViewGroup.LayoutParams lp = qsbContainer.getLayoutParams();
+//            if (cellHeight > 0 && lp.height != cellHeight) {
+//                lp.height = cellHeight;
+//                qsbContainer.setLayoutParams(lp);
+//            }
         }
     }
 
@@ -1437,10 +1437,10 @@ public class Workspace extends PagedView
     }
 
     private void onWorkspaceOverallScrollChanged() {
-        if (!mIgnoreQsbScroll) {
-            mLauncher.getQsbContainer().setTranslationX(
-                    mOverlayTranslation + mFirstPageScrollX - getScrollX());
-        }
+//        if (!mIgnoreQsbScroll) {
+//            mLauncher.getQsbContainer().setTranslationX(
+//                    mOverlayTranslation + mFirstPageScrollX - getScrollX());
+//        }
     }
 
     @Override
@@ -1528,8 +1528,7 @@ public class Workspace extends PagedView
      */
     public void setWorkspaceYTranslationAndAlpha(float translation, float alpha) {
         setWorkspaceTranslationAndAlpha(Direction.Y, translation, alpha);
-
-        mLauncher.getQsbContainer().setTranslationY(translation);
+//        mLauncher.getQsbContainer().setTranslationY(translation);
         mQsbAlphaController.setAlphaAtIndex(alpha, QSB_ALPHA_INDEX_Y_TRANSLATION);
     }
 

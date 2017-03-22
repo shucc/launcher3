@@ -358,6 +358,9 @@ public class Launcher extends Activity
     public ViewGroupFocusHelper mFocusHandler;
     private boolean mRotationEnabled = false;
 
+    //是否显示左侧侧边栏
+    private boolean mShowLeftSide = false;
+
     @Thunk void setOrientation() {
         if (mRotationEnabled) {
             unlockScreenOrientation(true);
@@ -598,7 +601,8 @@ public class Launcher extends Activity
         if (mLauncherCallbacks != null) {
             return mLauncherCallbacks.hasCustomContentToLeft();
         }
-        return false;
+        //返回true添加左侧栏
+        return true;
     }
 
     /**
@@ -2345,6 +2349,11 @@ public class Launcher extends Activity
 
     @Override
     public void onBackPressed() {
+        if (mShowLeftSide) {
+            //返回主界面
+            mWorkspace.scrollRight();
+            return;
+        }
         if (mLauncherCallbacks != null && mLauncherCallbacks.handleBackPressed()) {
             return;
         }
@@ -2353,7 +2362,6 @@ public class Launcher extends Activity
             mDragController.cancelDrag();
             return;
         }
-
         if (getOpenShortcutsContainer() != null) {
             closeShortcutsContainer();
         } else if (isAppsViewVisible()) {
@@ -4002,6 +4010,30 @@ public class Launcher extends Activity
 
             mSavedState = null;
         }
+
+        //添加左侧滑出栏
+        View leftView = getLayoutInflater().inflate(R.layout.left_side, null);
+        mWorkspace.addToCustomContentPage(leftView, new CustomContentCallbacks() {
+            @Override
+            public void onShow(boolean fromResume) {
+                mShowLeftSide = true;
+            }
+
+            @Override
+            public void onHide() {
+                mShowLeftSide = false;
+            }
+
+            @Override
+            public void onScrollProgressChanged(float progress) {
+
+            }
+
+            @Override
+            public boolean isScrollingAllowed() {
+                return true;
+            }
+        }, "LeftSide");
 
         mWorkspace.restoreInstanceStateForRemainingPages();
 
