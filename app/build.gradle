@@ -17,7 +17,7 @@ android {
     defaultConfig {
         useJack = false
         applicationId 'com.android.launcher3'
-        minSdkVersion Integer.parseInt(project.MIN_SDK_VERSION)
+        minSdkVersion 21
         targetSdkVersion Integer.parseInt(project.TARGET_SDK_VERSION)
         versionCode Integer.parseInt(project.VERSION_CODE)
         versionName project.VERSION_NAME
