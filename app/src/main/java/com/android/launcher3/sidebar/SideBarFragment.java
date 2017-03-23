@@ -1,4 +1,4 @@
-package com.android.launcher3.side.left;
+package com.android.launcher3.sidebar;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -16,7 +16,7 @@ import com.android.launcher3.util.ScreenUtil;
  * Created by shucc on 17/3/22.
  * cc@cchao.org
  */
-public class LeftFragment extends Fragment {
+public class SideBarFragment extends Fragment {
 
     private final String TAG = "LeftFragment";
 
@@ -29,7 +29,7 @@ public class LeftFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         activity = getActivity();
-        View rootView = inflater.inflate(R.layout.fragment_letf_side, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_sidebar, container, false);
         initViews(rootView);
         return rootView;
     }

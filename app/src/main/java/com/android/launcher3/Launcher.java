@@ -66,7 +66,6 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.method.TextKeyListener;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.Display;
 import android.view.HapticFeedbackConstants;
 import android.view.KeyEvent;
@@ -83,7 +82,6 @@ import android.view.accessibility.AccessibilityManager;
 import android.view.animation.OvershootInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Advanceable;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -4039,7 +4037,7 @@ public class Launcher extends Activity
      */
     private void addLeftSideView() {
         //添加左侧滑出栏
-        View leftView = getLayoutInflater().inflate(R.layout.left_side, null);
+        View leftView = getLayoutInflater().inflate(R.layout.sidebar_view, null);
         mWorkspace.addToCustomContentPage(leftView, new CustomContentCallbacks() {
             @Override
             public void onShow(boolean fromResume) {
